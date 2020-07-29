@@ -9,16 +9,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{ deway: 'movies' }],
-      favorites: [{ deway: 'favorites' }],
+      movies: [],
+      favorites: [],
       showFaves: false,
     };
 
     // you might have to do something important here!
+    this.swapFavorites = this.swapFavorites.bind(this);
+    this.addFavorites = this.addFavorites.bind(this);
   }
 
   componentDidMount() {
     this.getMovies();
+  }
+
+  addFavorites(e) {
+    console.log('addMovie', e);
+    // Add object to favoriate state
+    let tempState = this.state.favorites.slice();
+    tempState.push(e);
+
+    this.setState({
+      favorites: tempState,
+    });
+    //console.log(e.target.value);
   }
 
   getMovies() {
@@ -68,6 +82,7 @@ class App extends React.Component {
               this.state.showFaves ? this.state.favorites : this.state.movies
             }
             showFaves={this.state.showFaves}
+            selectMovies={this.addFavorites}
           />
         </div>
       </div>
