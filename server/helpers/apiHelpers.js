@@ -10,3 +10,23 @@ const { API_KEY } = require('../../config.js');
 // Get your API Key and save it in your config file
 
 // Don't forget to export your functions and require them within your server file
+
+const getMovies = (url, cb) => {
+  let options = {
+    method: 'GET',
+    url: url,
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+  //Create call to endpoint
+  axios(options)
+    .then((data) => {
+      cb(null, data);
+    })
+    .catch((error) => {
+      cb(error);
+    });
+};
+
+module.exports = getMovies;
