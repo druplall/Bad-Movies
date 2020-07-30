@@ -33,7 +33,18 @@ module.exports = {
       }
     });
   },
-  saveMovie: (req, res) => {},
+
+  saveMovie: (req, res) => {
+    //console.log(req.body);
+    //console.log('inControler');
+    movieModel.saveData(req.body, (err, data) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(201);
+      }
+    });
+  },
   deleteMovie: (req, res) => {},
 };
 

@@ -27,8 +27,31 @@ class Movies extends React.Component {
         {this.props.movies.map((movie) => {
           // console.log('Ouste the render');
           console.log(this.props.selectedFilter);
-          if (this.props.selectedFilter !== '') {
-            console.log('inside the render');
+          if (this.props.selectedFilter === '0') {
+            return (
+              <li
+                className='movie_item'
+                onClick={() => {
+                  this.props.selectMovies(movie);
+                }}
+              >
+                <img src='https://lh3.googleusercontent.com/97gnjRiv2zIRnDupzfxYFoI-6zlIK3jKgb6KOCDf_tjWkY9epbITdSFIbiKhuccOqQ=w300' />
+                <div className='movie_description'>
+                  <h2>{movie.title}</h2>
+                  <section className='movie_details'>
+                    <div className='movie_year'>
+                      <span className='title'>Year</span>
+                      <span>{movie.release_date}</span>
+                    </div>
+                    <div className='movie_rating'>
+                      <span className='title'>Rating</span>
+                      <span>{movie.vote_average}</span>
+                    </div>
+                  </section>
+                </div>
+              </li>
+            );
+          } else {
             if (movie.genre_ids.includes(Number(this.props.selectedFilter))) {
               return (
                 <li
@@ -54,30 +77,6 @@ class Movies extends React.Component {
                 </li>
               );
             }
-          } else {
-            return (
-              <li
-                className='movie_item'
-                onClick={() => {
-                  this.props.selectMovies(movie);
-                }}
-              >
-                <img src='https://lh3.googleusercontent.com/97gnjRiv2zIRnDupzfxYFoI-6zlIK3jKgb6KOCDf_tjWkY9epbITdSFIbiKhuccOqQ=w300' />
-                <div className='movie_description'>
-                  <h2>{movie.title}</h2>
-                  <section className='movie_details'>
-                    <div className='movie_year'>
-                      <span className='title'>Year</span>
-                      <span>{movie.release_date}</span>
-                    </div>
-                    <div className='movie_rating'>
-                      <span className='title'>Rating</span>
-                      <span>{movie.vote_average}</span>
-                    </div>
-                  </section>
-                </div>
-              </li>
-            );
           }
         })}
       </ul>

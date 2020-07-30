@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       movies: [],
       favorites: [],
-      selectGenre: '',
+      selectGenre: '0',
       showFaves: false,
     };
 
@@ -30,6 +30,7 @@ class App extends React.Component {
   }
   addFavorites(e) {
     console.log('addMovie', e);
+    this.saveMovie(e);
     // Add object to favoriate state
     let tempState = this.state.favorites.slice();
     tempState.push(e);
@@ -56,8 +57,12 @@ class App extends React.Component {
       });
   }
 
-  saveMovie() {
+  saveMovie(saveItem) {
     // same as above but do something diff
+    axios
+      .post('/movies/save', saveItem)
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   }
 
   deleteMovie() {
