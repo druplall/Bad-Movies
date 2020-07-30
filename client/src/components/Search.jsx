@@ -6,7 +6,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       genres: [],
-      selected: '',
+      selected: null,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -24,6 +24,10 @@ class Search extends React.Component {
     axios
       .get('/movies/genres')
       .then((data) => {
+        let copyState = this.state.genres.slice();
+        copyState.push(data.data.genres);
+        console.log(copyState);
+
         this.setState({
           genres: data.data.genres,
         });
@@ -62,7 +66,15 @@ class Search extends React.Component {
         <br />
         <br />
 
-        <button>Search</button>
+        <button
+          onClick={() => {
+            this.props.filterValue(
+              this.state.selected !== null ? this.state.selected : ''
+            );
+          }}
+        >
+          Search
+        </button>
       </div>
     );
   }

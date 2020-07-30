@@ -11,18 +11,23 @@ class App extends React.Component {
     this.state = {
       movies: [],
       favorites: [],
+      selectGenre: null,
       showFaves: false,
     };
 
     // you might have to do something important here!
     this.swapFavorites = this.swapFavorites.bind(this);
     this.addFavorites = this.addFavorites.bind(this);
+    this.setSearchFilter = this.setSearchFilter.bind(this);
   }
 
   componentDidMount() {
     this.getMovies();
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   addFavorites(e) {
     console.log('addMovie', e);
     // Add object to favoriate state
@@ -66,6 +71,13 @@ class App extends React.Component {
     });
   }
 
+  setSearchFilter(filter) {
+    console.log(filter, ' Filtered Value');
+    this.setState({
+      selectGenre: filter,
+    });
+  }
+
   render() {
     return (
       <div className='app'>
@@ -76,6 +88,7 @@ class App extends React.Component {
           <Search
             swapFavorites={this.swapFavorites}
             showFaves={this.state.showFaves}
+            filterValue={this.setSearchFilter}
           />
           <Movies
             movies={
