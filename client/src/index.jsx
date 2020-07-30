@@ -30,15 +30,18 @@ class App extends React.Component {
   }
   addFavorites(e) {
     console.log('addMovie', e);
-    this.saveMovie(e);
-    // Add object to favoriate state
-    let tempState = this.state.favorites.slice();
-    tempState.push(e);
+    if (this.state.showFaves !== true) {
+      this.saveMovie(e);
+      let tempState = this.state.favorites.slice();
+      tempState.push(e);
+      this.setState({
+        favorites: tempState,
+      });
+    }
 
-    this.setState({
-      favorites: tempState,
-    });
-    //console.log(e.target.value);
+    if (this.state.showFaves === true) {
+      this.deleteMovie(e);
+    }
   }
 
   getMovies() {
@@ -65,8 +68,13 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  deleteMovie() {
+  deleteMovie(item) {
+    //console.log('Calling delete ', item);
     // same as above but do something diff
+    axios
+      .delete('movies/delete', { data: item })
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   }
 
   swapFavorites() {

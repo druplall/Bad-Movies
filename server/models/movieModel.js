@@ -49,5 +49,19 @@ module.exports = {
         cb(err);
       });
   },
-  deleteData: (data) => {},
+
+  deleteData: (data, cb) => {
+    //console.log(data.body);
+    //console.log(data.id, 'insde delete');
+    sqlDb
+      .queryAsync(`DELETE FROM movies WHERE idMovie = ?`, data.id)
+      .then((res) => {
+        console.log(res);
+        cb(null, res);
+      })
+      .catch((err) => {
+        console.log(err);
+        cb(err);
+      });
+  },
 };

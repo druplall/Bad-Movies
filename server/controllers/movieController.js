@@ -35,7 +35,6 @@ module.exports = {
   },
 
   saveMovie: (req, res) => {
-    //console.log(req.body);
     //console.log('inControler');
     movieModel.saveData(req.body, (err, data) => {
       if (err) {
@@ -45,7 +44,16 @@ module.exports = {
       }
     });
   },
-  deleteMovie: (req, res) => {},
+  deleteMovie: (req, res) => {
+    console.log(req.body, ' this is the body');
+    movieModel.deleteData(req.body, (err, data) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.send(data);
+      }
+    });
+  },
 };
 
 function compare(a, b) {

@@ -14,7 +14,7 @@ Learn the fundamentals of application structure and database integration by maki
 
 [completed] User should be able to click on any movie in order to save it to their favorites list (mySQL database, you must make your own Schema)
 
-[ ] If a user has navigated to their favorites page, clicking on a movie should delete it from their favorites (unlike on the main page, where clicking on a movie adds it to their favorites list)
+[completed ] If a user has navigated to their favorites page, clicking on a movie should delete it from their favorites (unlike on the main page, where clicking on a movie adds it to their favorites list)
 
 [ ] Store your data in MySQL db (or MongoDB if/when you feel comfortable)
 
