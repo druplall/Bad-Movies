@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       movies: [],
       favorites: [],
-      selectGenre: null,
+      selectGenre: '',
       showFaves: false,
     };
 
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    //console.log(this.state);
   }
   addFavorites(e) {
     console.log('addMovie', e);
@@ -96,6 +96,7 @@ class App extends React.Component {
             }
             showFaves={this.state.showFaves}
             selectMovies={this.addFavorites}
+            selectedFilter={this.state.selectGenre}
           />
         </div>
       </div>

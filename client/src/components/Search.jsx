@@ -6,7 +6,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       genres: [],
-      selected: null,
+      selected: '',
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -69,7 +69,7 @@ class Search extends React.Component {
         <button
           onClick={() => {
             this.props.filterValue(
-              this.state.selected !== null ? this.state.selected : ''
+              this.state.selected !== '' ? this.state.selected : ''
             );
           }}
         >
