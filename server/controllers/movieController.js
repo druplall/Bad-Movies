@@ -45,12 +45,11 @@ module.exports = {
     });
   },
   deleteMovie: (req, res) => {
-    console.log(req.body, ' this is the body');
     movieModel.deleteData(req.body, (err, data) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.send(data);
+        res.sendStatus(200);
       }
     });
   },
